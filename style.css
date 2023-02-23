@@ -5,6 +5,34 @@
     src: url('./font/OpenSans-Bold.ttf');
 }
 
+
+/* ===== Scrollbar CSS ===== */
+
+
+/* Firefox */
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #404040 rgba(255, 255, 255, 0.2);
+}
+
+
+/* Chrome, Edge, and Safari */
+
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #404040;
+    border-radius: 20px;
+    border: 0px none #ffffff;
+}
+
 :root {
     --first-textcolor: #ffffff;
     --second-textcolor: #323232;
@@ -23,6 +51,10 @@ body {
 
 .hide {
     display: none !important;
+}
+
+.hidePokedex {
+    overflow: hidden !important;
 }
 
 
@@ -71,7 +103,7 @@ input {
     background-image: url('./img/pokeball.jpg');
     background-size: cover;
     background-position: center;
-    padding: 70px;
+    padding: 70px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,8 +142,9 @@ input {
 }
 
 .content {
-    width: 80%;
+    width: 60%;
     height: 85vh;
+    padding: 25px 5px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -121,12 +154,22 @@ input {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    overflow: scroll;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+    /* Chrome */
 }
 
 .sideContent {
     width: 15%;
     height: 85vh;
+    padding: 25px 5px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -141,10 +184,10 @@ input {
 
 .pokeCard {
     height: 120px;
-    width: 360px;
+    width: 300px;
     border-radius: 20px;
     padding: 10px 20px;
-    margin: 50px 10px;
+    margin: 25px 10px;
     background-image: url('./img/pokeball-icon.jpg');
     background-repeat: no-repeat;
     background-position: right;
@@ -156,7 +199,7 @@ input {
 .pokeCard span {
     font-family: OpenSansBold, sans-serif;
     color: var(--second-textcolor);
-    letter-spacing: 5px;
+    /* letter-spacing: 5px; */
 }
 
 .pokeCard h3 {
@@ -195,8 +238,8 @@ input {
 .pokeImg {
     position: absolute;
     bottom: 0;
-    right: 20px;
-    height: 200px;
+    right: 0;
+    height: 170px;
     transition: all ease-in-out 125ms;
 }
 
@@ -214,6 +257,41 @@ input {
     transform: scale(1.15);
     transition: all ease-in-out 125ms;
 }
+
+
+/* Detail Card */
+
+.pokedexDetails {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    right: 20px;
+    bottom: 10px;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+/* .pokeDetails {
+    width: 80%;
+    height: 85vh;
+    padding: 25px 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+} */
 
 
 /* Types */

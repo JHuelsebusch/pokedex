@@ -26,7 +26,7 @@ function showPokedex() {
 }
 
 async function loadPokemon() {
-    for (let p = 1; p < 250; p++) {
+    for (let p = 1; p < 20; p++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${p}/`
         let response = await fetch(url);
         let pokemon = await response.json();
@@ -54,7 +54,7 @@ function generatePokeCard(id, name, imgUrl, firstType) {
     return `
     <div class="pokeCard ${firstType}">
         <div>
-            <span>#${id}</span>
+            <span># ${id}</span>
             <h3>${name}</h3>
             <div class="typeIcons" id='typeIcons${id}'>
            </div>
@@ -71,4 +71,8 @@ function generateTypeIcons(type) {
         <img src="./img/icons/${type}.svg">
     </div>
     `
+}
+
+function openDetailCard() {
+    document.getElementById('pokedexDetails').classList.remove('hide');
 }
