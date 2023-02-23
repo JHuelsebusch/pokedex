@@ -1,4 +1,6 @@
 let loadedPokemon = [];
+let startId = 1;
+let endId = 20;
 
 function init() {
     startScreen();
@@ -29,7 +31,7 @@ function showPokedex() {
 
 async function loadPokemon() {
     document.getElementById('loader').classList.remove('hide');
-    for (let p = 1; p < 100; p++) {
+    for (let p = startId; p < endId; p++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${p}/`
         let response = await fetch(url);
         let pokemon = await response.json();
@@ -76,4 +78,14 @@ function generateTypeIcons(type) {
         <img src="./img/icons/${type}.svg">
     </div>
     `
+}
+
+function endofpage() {
+    let content = document.getElementById('content');
+    if (content.offsetHeight + content.scrollTop >= content.scrollHeight) {
+        console.log('Ende');
+        startId = endId;
+        endId = endId + 20;
+        loadPokemon();
+    }
 }
