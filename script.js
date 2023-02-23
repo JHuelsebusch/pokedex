@@ -22,10 +22,11 @@ function choseTeam(n) {
 function showPokedex() {
     document.getElementById('startScreen').classList.add('hide');
     document.getElementById('pokedex').classList.remove('hide');
+    loadPokemon();
 }
 
 async function loadPokemon() {
-    for (let p = 1; p < 10; p++) {
+    for (let p = 1; p < 250; p++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${p}/`
         let response = await fetch(url);
         let pokemon = await response.json();

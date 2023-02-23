@@ -249,3 +249,115 @@ input {
 .flyingIcon {
     background-color: #899cf0;
 }
+
+.bug {
+    background-color: #ABC837;
+}
+
+.bugIcon {
+    background-color: #76B573;
+}
+
+.dark {
+    background-color: #333333;
+}
+
+.darkIcon {
+    background-color: #252525;
+}
+
+.dragon {
+    background-color: #9393AC;
+}
+
+.dragonIcon {
+    background-color: #6F6F91;
+}
+
+.electric {
+    background-color: #FFE680;
+}
+
+.electricIcon {
+    background-color: #FFDD55;
+}
+
+.fairy {
+    background-color: #FFD5F6;
+}
+
+.fairyIcon {
+    background-color: #FFAAEE;
+}
+
+.fighting {
+    background-color: #FF9955;
+}
+
+.fightingIcon {
+    background-color: #cd7b44;
+}
+
+.ghost {
+    background-color: #3E3748;
+}
+
+.ghostIcon {
+    background-color: #342f3a;
+}
+
+.ground {
+    background-color: #DEAA87;
+}
+
+.groundIcon {
+    background-color: #bb815a;
+}
+
+.ice {
+    background-color: #AFE9DD;
+}
+
+.iceIcon {
+    background-color: #87DECD;
+}
+
+.normal {
+    background-color: #e1e1e1;
+}
+
+.normalIcon {
+    background-color: #d4d4d4;
+}
+
+.psychic {
+    background-color: #C837AB;
+}
+
+.psychicIcon {
+    background-color: #A02C89;
+}
+
+.rock {
+    background-color: #764d31;
+}
+
+.rockIcon {
+    background-color: #3a1f0c;
+}
+
+.steel {
+    background-color: #999999;
+}
+
+.steelIcon {
+    background-color: #808080;
+}
+
+.water {
+    background-color: #2A7FFF;
+}
+
+.waterIcon {
+    background-color: #0000ff;
+}
