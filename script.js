@@ -1,3 +1,5 @@
+let loadedPokemon = [];
+
 function init() {
     startScreen();
 }
@@ -26,12 +28,15 @@ function showPokedex() {
 }
 
 async function loadPokemon() {
-    for (let p = 1; p < 20; p++) {
+    document.getElementById('loader').classList.remove('hide');
+    for (let p = 1; p < 100; p++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${p}/`
         let response = await fetch(url);
         let pokemon = await response.json();
+        loadedPokemon.push(pokemon);
         showPokemon(pokemon);
     }
+    document.getElementById('loader').classList.add('hide');
 }
 
 function showPokemon(pokemon) {
@@ -71,8 +76,4 @@ function generateTypeIcons(type) {
         <img src="./img/icons/${type}.svg">
     </div>
     `
-}
-
-function openDetailCard() {
-    document.getElementById('pokedexDetails').classList.remove('hide');
 }
