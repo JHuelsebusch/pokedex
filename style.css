@@ -1,10 +1,13 @@
 @font-face {
     font-family: OpenSans;
-    src: url('font/OpenSans-Regular.ttf');
+    src: url('./font/OpenSans-Regular.ttf');
+    font-family: OpenSansBold;
+    src: url('./font/OpenSans-Bold.ttf');
 }
 
 :root {
     --first-textcolor: #ffffff;
+    --second-textcolor: #323232;
     --shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
     --background-dark: #000000;
 }
@@ -19,7 +22,7 @@ body {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 
@@ -55,24 +58,33 @@ input {
     height: 30px;
     background-color: var(--background-dark);
     color: var(--first-textcolor);
-    border-radius: 10px;
+    border-radius: 20px;
     outline: none;
+    padding: 0px 10px;
 }
 
 
 /* Start Screen */
 
-.startScreen {
+.bg {
+    height: calc(100vh - 140px);
     background-image: url('./img/pokeball.jpg');
-    height: calc(100vh - 200px);
     background-size: cover;
     background-position: center;
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.startScreen {
+    height: 100%;
     color: var(--first-textcolor);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 100px;
 }
 
 .startTeam {
@@ -86,4 +98,154 @@ input {
     max-width: 300px;
     border-radius: 100%;
     box-shadow: var(--shadow);
+}
+
+
+/* Content */
+
+.pokedex {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.content {
+    width: 80%;
+    height: 85vh;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+.sideContent {
+    width: 15%;
+    height: 85vh;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokeCard {
+    height: 120px;
+    width: 360px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 50px 10px;
+    background-image: url('./img/pokeball-icon.jpg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+    position: relative;
+    transition: all ease-in-out 125ms;
+}
+
+.pokeCard span {
+    font-family: OpenSansBold, sans-serif;
+    color: var(--second-textcolor);
+    letter-spacing: 5px;
+}
+
+.pokeCard h3 {
+    font-family: OpenSansBold, sans-serif;
+    font-size: 2em;
+    color: var(--first-textcolor);
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.pokeCard div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.typeIcons {
+    display: flex;
+    flex-direction: row !important;
+    gap: 5px;
+}
+
+.typeIcon {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typeIcon img {
+    height: 15px;
+}
+
+.pokeImg {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+    height: 200px;
+    transition: all ease-in-out 125ms;
+}
+
+.pokeImg img {
+    height: 100%;
+}
+
+.pokeCard:hover {
+    transform: scale(1.05);
+    transition: all ease-in-out 125ms;
+    cursor: pointer;
+}
+
+.pokeCard:hover .pokeImg {
+    transform: scale(1.15);
+    transition: all ease-in-out 125ms;
+}
+
+
+/* Types */
+
+.grass {
+    background-color: #56C182;
+}
+
+.grassIcon {
+    background-color: #2f774c;
+}
+
+.poison {
+    background-color: #A561A5;
+}
+
+.poisonIcon {
+    background-color: #763d76;
+}
+
+.fire {
+    background-color: #FB6C6C;
+}
+
+.fireIcon {
+    background-color: #ff0000;
+}
+
+.flying {
+    background-color: #9CADF7;
+}
+
+.flyingIcon {
+    background-color: #899cf0;
 }
