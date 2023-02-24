@@ -38,6 +38,9 @@
     --second-textcolor: #323232;
     --shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
     --background-dark: #000000;
+    --first-media: 1220px;
+    --second-media: 810px;
+    --third-media: 400px;
 }
 
 html {
@@ -72,7 +75,7 @@ nav {
     left: 0;
     background-color: var(--background-dark);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 nav div {
@@ -99,6 +102,18 @@ input {
     padding: 0px 10px;
 }
 
+@media(max-width:810px) {
+    nav div {
+        width: unset;
+    }
+}
+
+@media(max-width:400px) {
+    input {
+        display: none;
+    }
+}
+
 
 /* Button */
 
@@ -110,6 +125,7 @@ input {
 
 .btn:hover {
     cursor: pointer;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 
@@ -152,6 +168,36 @@ input {
 
 .startScreen h2 {
     font-size: 3em;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    text-align: center;
+}
+
+.startScreen img:hover {
+    filter: saturate(1.5);
+}
+
+@media(max-width:1220px) {
+    .startScreen img {
+        width: 29%;
+    }
+}
+
+@media(max-width:810px) {
+    .startScreen h2 {
+        font-size: 2.5em;
+    }
+}
+
+@media(max-width:400px) {
+    .startScreen h2 {
+        font-size: 2em;
+    }
+    .startTeam {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 
@@ -165,7 +211,7 @@ input {
 
 .content {
     width: 60%;
-    height: 85vh;
+    height: calc(100vh - 160px);
     padding: 25px 5px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -190,7 +236,7 @@ input {
 
 .sideContent {
     width: 15%;
-    height: 89vh;
+    height: calc(100vh - 120px);
     padding: 5px 5px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -202,6 +248,22 @@ input {
     flex-direction: column;
     align-items: center;
     color: var(--first-textcolor)
+}
+
+@media(max-width:1220px) {
+    .content {
+        max-width: 360px;
+        width: unset;
+    }
+    .sideContent {
+        width: 190px;
+    }
+}
+
+@media(max-width:810px) {
+    .sideContent {
+        display: none;
+    }
 }
 
 .pokeCard {
@@ -277,6 +339,22 @@ input {
 .pokeCard:hover .pokeImg {
     transform: scale(1.15);
     transition: all ease-in-out 125ms;
+}
+
+@media(max-width:400px) {
+    .pokeCard span {
+        order: 2;
+    }
+    .pokeCard h3 {
+        order: 1;
+    }
+    .typeIcons {
+        order: 3;
+    }
+    .pokeImg {
+        width: 50%;
+        height: unset;
+    }
 }
 
 
@@ -404,8 +482,24 @@ input {
     margin-block-end: 0;
 }
 
+.teamImg {
+    height: 15%;
+}
+
 .teamImg img {
-    height: 13.5vh;
+    height: 100%;
+}
+
+.teamId-1 {
+    filter: invert(11%) sepia(80%) saturate(4535%) hue-rotate(234deg) brightness(126%) contrast(134%);
+}
+
+.teamId-2 {
+    filter: invert(26%) sepia(99%) saturate(5813%) hue-rotate(356deg) brightness(119%) contrast(140%);
+}
+
+.teamId-3 {
+    filter: invert(87%) sepia(92%) saturate(4867%) hue-rotate(6deg) brightness(105%) contrast(109%);
 }
 
 
@@ -560,12 +654,12 @@ input {
 
 .loader {
     width: 95%;
-    height: 92vh;
+    height: calc(100vh - 110px);
     position: absolute;
-    bottom: 10px;
+    top: 70px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -575,8 +669,15 @@ input {
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: var(--first-textcolor);
     font-size: 2em;
+    text-align: center;
     gap: 60px;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media(max-width:400px) {
+    .loader {
+        font-size: 1.5em;
+    }
 }
 
 .container {

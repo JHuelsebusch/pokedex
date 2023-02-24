@@ -24,6 +24,7 @@ function startScreen() {
 
 function choseTeam(n) {
     document.getElementById('navTeam').innerHTML = `<img src="./img/team-${n}.jpg"> `
+    teamId = n;
     showPokedex();
 }
 
@@ -167,7 +168,7 @@ function renderTeam() {
         if (pokemon) {
             pokeTeam.innerHTML += `<div class="teamImg"><img class="" src="${pokemon['sprites']['other']['official-artwork']['front_default']}"></div>`
         } else {
-            pokeTeam.innerHTML += `<div class="teamImg"><img class="" src="./img/pokeball-icon.jpg"></div>`
+            pokeTeam.innerHTML += `<div class="teamImg"><img class="teamId-${teamId}" src="./img/pokeball-icon.jpg"></div>`
 
         }
     }
