@@ -24,14 +24,32 @@
 
         </div>
         <div class="pokedex hide" id="pokedex">
-            <div class="sideContent">
-
+            <div class="sideContent" id="pokeDetails">
+                <div class="detailImg"></div>
+                <div class="detailHead">
+                    <span># 1</span>
+                    <h2>Bulbasaur</h2>
+                </div>
+                <div class="detailType">
+                    <div class="grassIcon detailIcon"><img src="./img/icons/grass.svg"> Grass</div>
+                    <div class="poisonIcon detailIcon"><img src="./img/icons/poison.svg"> Poison</div>
+                </div>
+                <div class="detailActions">
+                    <div class="detailAct">Show Shiny</div>
+                    <div class="detailAct">Add to your Team</div>
+                </div>
+                <div class="detailAbout">
+                    <span>Height:</span>
+                    <span>Weight:</span>
+                    <span>Abilities:</span>
+                    <span>Base Experience:</span>
+                </div>
             </div>
             <div class="content" id="content" onscroll="loadNewPokemon()">
 
             </div>
 
-            <div class="sideContent">
+            <div class="sideContent" id="pokeTeam">
 
             </div>
         </div>
