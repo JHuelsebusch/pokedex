@@ -53,7 +53,7 @@ body {
     display: none !important;
 }
 
-.hidePokedex {
+.stopScroll {
     overflow: hidden !important;
 }
 
@@ -458,7 +458,9 @@ input {
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: var(--first-textcolor);
+    font-size: 2em;
     gap: 60px;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .container {
@@ -468,9 +470,9 @@ input {
 }
 
 .ball {
-    width: 10px;
-    height: 10px;
-    margin: 10px auto;
+    width: 20px;
+    height: 20px;
+    margin: 20px auto;
     border-radius: 50px;
 }
 
@@ -511,24 +513,24 @@ input {
 
 @keyframes right2 {
     0% {
-        transform: translate(-15px);
+        transform: translate(-30px);
     }
     50% {
-        transform: translate(15px);
+        transform: translate(30px);
     }
     100% {
-        transform: translate(-15px);
+        transform: translate(-30px);
     }
 }
 
 @keyframes left2 {
     0% {
-        transform: translate(15px);
+        transform: translate(30px);
     }
     50% {
-        transform: translate(-15px);
+        transform: translate(-30px);
     }
     100% {
-        transform: translate(15px);
+        transform: translate(30px);
     }
 }

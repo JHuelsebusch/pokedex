@@ -3,7 +3,8 @@ let startId = 1;
 let endId = 20;
 
 function init() {
-    startScreen();
+    // startScreen();
+    showPokedex();
 }
 
 function startScreen() {
@@ -26,6 +27,8 @@ function choseTeam(n) {
 function showPokedex() {
     document.getElementById('startScreen').classList.add('hide');
     document.getElementById('pokedex').classList.remove('hide');
+    startId = 1;
+    endId = 20;
     loadPokemon();
 }
 
@@ -36,7 +39,7 @@ async function loadPokemon() {
         let response = await fetch(url);
         let pokemon = await response.json();
         loadedPokemon.push(pokemon);
-        showPokemon(pokemon);
+        await showPokemon(pokemon);
     }
     document.getElementById('loader').classList.add('hide');
 }
@@ -47,12 +50,11 @@ function showPokemon(pokemon) {
     let imgUrl = pokemon['sprites']['other']['official-artwork']['front_default'];
     let firstType = pokemon['types'][0]['type']['name'];
     document.getElementById('content').innerHTML += generatePokeCard(id, name, imgUrl, firstType);
+    console.log(name, id);
 
     let types = pokemon['types'];
-    console.log(name, id, imgUrl);
     for (let t = 0; t < types.length; t++) {
         let type = types[t]['type']['name'];
-        console.log(type);
         document.getElementById('typeIcons' + id).innerHTML += generateTypeIcons(type);
     }
 }
@@ -80,12 +82,13 @@ function generateTypeIcons(type) {
     `
 }
 
-function endofpage() {
+async function loadNewPokemon() {
     let content = document.getElementById('content');
     if (content.offsetHeight + content.scrollTop >= content.scrollHeight) {
-        console.log('Ende');
+        content.classList.add('stopScroll');
         startId = endId;
         endId = endId + 20;
-        loadPokemon();
+        await loadPokemon();
+        content.classList.remove('stopScroll');
     }
 }
