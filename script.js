@@ -2,10 +2,11 @@ let loadedPokemon = [];
 let teamId; //Team Valor, Mystic or Instinct
 let startId = 1;
 let endId = 20;
+let team = [];
 
 function init() {
-    // startScreen();
-    showPokedex();
+    startScreen();
+    // showPokedex();
 }
 
 function startScreen() {
@@ -32,6 +33,7 @@ function showPokedex() {
     startId = 1;
     endId = 20;
     loadPokemon();
+    renderTeam();
 }
 
 async function loadPokemon() {
@@ -108,7 +110,7 @@ function showDetailCard(pokemon) {
 }
 
 function generateDetails(pokemon, height, weight) {
-    return `
+    return `    <span class="subHead"><h2>Details</h2></span>
                 <div class="detailImg"><img id='detailImg' src="${pokemon['sprites']['other']['official-artwork']['front_default']}"></div>
                 <div class="detailHead">
                     <span># ${pokemon['id']}</span>
@@ -147,6 +149,26 @@ function showShiny(id) {
         document.getElementById('detailImg').src = `${pokemon['sprites']['other']['official-artwork']['front_shiny']}`;
         imgClass.add('shiny');
     }
+}
 
+function addTeam(id) {
+    if (team.length < 6) {
+        let pokemon = loadedPokemon[id - 1];
+        team.push(pokemon);
+    }
+    renderTeam();
+}
 
+function renderTeam() {
+    let pokeTeam = document.getElementById('pokeTeam');
+    pokeTeam.innerHTML = '<span class="subHead"><h2>Your Team</h2></span>';
+    for (let i = 0; i < 6; i++) {
+        let pokemon = team[i];
+        if (pokemon) {
+            pokeTeam.innerHTML += `<div class="teamImg"><img class="" src="${pokemon['sprites']['other']['official-artwork']['front_default']}"></div>`
+        } else {
+            pokeTeam.innerHTML += `<div class="teamImg"><img class="" src="./img/pokeball-icon.jpg"></div>`
+
+        }
+    }
 }
