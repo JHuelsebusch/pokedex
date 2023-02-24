@@ -1,10 +1,11 @@
 let loadedPokemon = [];
+let teamId; //Team Valor, Mystic or Instinct
 let startId = 1;
 let endId = 20;
 
 function init() {
-    // startScreen();
-    showPokedex();
+    startScreen();
+    // showPokedex();
 }
 
 function startScreen() {
@@ -12,7 +13,8 @@ function startScreen() {
     startScreen.innerHTML = `
         <span><h2>Choose your Team!</h2></span>
         <div class="startTeam" id="startTeam"></div>
-        <button>Show Pokedex</button>`
+        <span><h2>or</h2></span>
+        <button class="btn" onclick="showPokedex()"><h2>Show Pokedex</h2></button>`
     let team = document.getElementById('startTeam')
     for (let i = 1; i <= 3; i++) {
         team.innerHTML += `<img src="./img/team-${i}.jpg" onclick='choseTeam(${i})'>`

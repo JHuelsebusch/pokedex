@@ -96,6 +96,19 @@ input {
 }
 
 
+/* Button */
+
+.btn {
+    background-color: unset;
+    color: var(--first-textcolor);
+    border: none;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+
 /* Start Screen */
 
 .bg {
@@ -130,6 +143,11 @@ input {
     max-width: 300px;
     border-radius: 100%;
     box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+.startScreen h2 {
+    font-size: 3em;
 }
 
 
