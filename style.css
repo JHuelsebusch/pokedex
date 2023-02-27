@@ -64,6 +64,20 @@ body {
     background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
+.dOn {
+    display: flex !important;
+}
+
+.hidePokedex {
+    display: flex;
+}
+
+@media(max-width:810px) {
+    .hidePokedex {
+        display: none !important;
+    }
+}
+
 
 /* Nav */
 
@@ -85,8 +99,25 @@ nav div {
     align-items: center;
 }
 
+#navTeam {
+    position: relative;
+}
+
 #navTeam img {
     border-radius: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+
+.teamAmount {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    color: var(--first-textcolor);
+    top: 5px;
+    right: -5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
 }
 
 nav img {
@@ -235,6 +266,7 @@ input {
 }
 
 .sideContent {
+    position: relative;
     width: 15%;
     height: calc(100vh - 120px);
     padding: 5px 5px;
@@ -247,7 +279,26 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--first-textcolor)
+    color: var(--first-textcolor);
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.sideContent::-webkit-scrollbar {
+    display: none;
+    /* Chrome */
+}
+
+.sideContent h4 {
+    width: 90%;
+    text-align: left;
+}
+
+.sideContent p {
+    text-align: center;
 }
 
 @media(max-width:1220px) {
@@ -263,12 +314,23 @@ input {
 @media(max-width:810px) {
     .sideContent {
         display: none;
+        position: absolute;
+        top: 70px;
+        width: 90%;
+        z-index: 2;
+    }
+    .content {
+        width: 90%;
+        max-width: unset;
+        /* padding: unset;
+        margin: unset; */
     }
 }
 
 .pokeCard {
     height: 120px;
     width: 300px;
+    min-width: 200px;
     border-radius: 20px;
     padding: 10px 20px;
     margin: 25px 10px;
@@ -360,6 +422,19 @@ input {
 
 /* Detail Card */
 
+.closeIcon {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.closeIcon img {
+    height: 30px;
+    opacity: 0.3;
+}
+
 .detailImg {
     width: 90%;
     display: flex;
@@ -441,38 +516,81 @@ input {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-
-/* .pokedexDetails {
+.detailStats {
+    width: 90%;
+    padding: 10px 0px;
     display: flex;
-    justify-content: space-evenly;
-    position: absolute;
-    top: 70px;
-    left: 20px;
-    right: 20px;
-    bottom: 10px;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-} */
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-
-/* .pokeDetails {
-    width: 80%;
-    height: 85vh;
-    padding: 25px 5px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+.stats {
     display: flex;
-    justify-content: center;
-} */
+}
+
+.stats span {
+    width: 40%;
+}
+
+.stats span::first-letter {
+    text-transform: uppercase;
+}
+
+.statsProgressBar {
+    width: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.progressBar {
+    border-radius: 30px;
+    padding-left: 5px;
+}
+
+.stats:nth-child(1) .progressBar {
+    background-color: #0000ff;
+}
+
+.stats:nth-child(2) .progressBar {
+    background-color: #ff0000;
+}
+
+.stats:nth-child(3) .progressBar {
+    background-color: #2f774c;
+}
+
+.stats:nth-child(4) .progressBar {
+    background-color: #A02C89;
+}
+
+.stats:nth-child(5) .progressBar {
+    background-color: #3a1f0c;
+}
+
+.stats:nth-child(6) .progressBar {
+    background-color: #d4d4d4;
+}
+
+.detailMoves {
+    width: 90%;
+    padding: 10px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    text-align: left;
+}
+
+.detailMoves span::first-letter {
+    text-transform: uppercase;
+}
+
+@media(max-width:810px) {
+    .closeIcon {
+        display: block;
+    }
+}
 
 
 /* PokeTeam */
@@ -484,6 +602,8 @@ input {
 
 .teamImg {
     height: 15%;
+    position: relative;
+    cursor: pointer;
 }
 
 .teamImg img {
@@ -501,6 +621,28 @@ input {
 .teamId-3 {
     filter: invert(87%) sepia(92%) saturate(4867%) hue-rotate(6deg) brightness(105%) contrast(109%);
 }
+
+.teamRemove {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: -10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    height: 20px;
+    width: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.teamRemove:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* .teamRemove img {
+    height: 30px;
+
+} */
 
 
 /* Types */

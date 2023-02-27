@@ -23,7 +23,7 @@ function startScreen() {
 }
 
 function choseTeam(n) {
-    document.getElementById('navTeam').innerHTML = `<img src="./img/team-${n}.jpg"> `
+    document.getElementById('navTeam').innerHTML = `<img src="./img/team-${n}.jpg"><div id="teamAmount"></div> `
     teamId = n;
     showPokedex();
 }
@@ -100,18 +100,26 @@ async function loadNewPokemon() {
 
 function showDetails(id) {
     pokemon = loadedPokemon[id - 1];
+    document.getElementById('content').classList.add('hidePokedex');
     showDetailCard(pokemon)
     generateDetaisType(pokemon);
+    generateAbilities(pokemon);
+    generateStats(pokemon);
+    generateMoves(pokemon);
 }
 
 function showDetailCard(pokemon) {
+    document.getElementById('pokeDetails').classList.add('dOn');
     let height = (((parseFloat(pokemon['height'])) * 0.1).toFixed(1)).replace(".", ",");
     let weight = (((parseFloat(pokemon['weight'])) * 0.1).toFixed(1)).replace(".", ",");
     document.getElementById('pokeDetails').innerHTML = generateDetails(pokemon, height, weight);
 }
 
 function generateDetails(pokemon, height, weight) {
-    return `    <span class="subHead"><h2>Details</h2></span>
+    return `    <div class="closeIcon" onclick="closeDetails()">
+                <img src="./img/icons/x-mark-48.png" alt="" >    
+                </div>
+                <span class="subHead"><h2>Details</h2></span>
                 <div class="detailImg"><img id='detailImg' src="${pokemon['sprites']['other']['official-artwork']['front_default']}"></div>
                 <div class="detailHead">
                     <span># ${pokemon['id']}</span>
@@ -123,12 +131,20 @@ function generateDetails(pokemon, height, weight) {
                     <div class="detailAct" id="shinyBtn" onclick="showShiny(${pokemon['id']})">Show Shiny</div>
                     <div class="detailAct" onclick="addTeam(${pokemon['id']})">Add to your Team</div>
                 </div>
+                <h4>About</h4>
                 <div class="detailAbout">
                     <span>Height: ${height} m</span>
                     <span>Weight: ${weight} kg</span>
                     <span id="abilities">Abilities:</span>
                     <span>Base Experience: ${pokemon['base_experience']}</span>
+                </div>
+                <h4>Base Stats</h4>
+                <div class="detailStats" id="detailStats">
+                </div>
+                <h4>Moves</h4>
+                <div class="detailMoves" id="detailMoves">
                 </div>`
+
 
 }
 
@@ -138,6 +154,59 @@ function generateDetaisType(pokemon) {
         let type = types[t]['type']['name'];
         document.getElementById('detailType').innerHTML += `<div class="${type}Icon detailIcon"><img src="./img/icons/${type}.svg"> ${type.charAt(0).toUpperCase() + type.slice(1)}</div>`
     }
+}
+
+function generateAbilities(pokemon) {
+    for (let a = 0; a < pokemon['abilities'].length; a++) {
+        let ability = pokemon['abilities'][a];
+        if (a < pokemon['abilities'].length - 1) {
+            document.getElementById('abilities').innerHTML += createAbility(ability);
+        } else {
+            document.getElementById('abilities').innerHTML += createLastAbility(ability);
+        }
+    }
+}
+
+function createAbility(ability) {
+    return ` ${ability['ability']['name'].charAt(0).toUpperCase() + ability['ability']['name'].slice(1)},`
+}
+
+function createLastAbility(ability) {
+    return ` ${ability['ability']['name'].charAt(0).toUpperCase() + ability['ability']['name'].slice(1)}`
+}
+
+function generateStats(pokemon) {
+    for (let s = 0; s < pokemon['stats'].length; s++) {
+        let stat = pokemon['stats'][s];
+        document.getElementById('detailStats').innerHTML += createStats(stat);
+    }
+}
+
+function createStats(stat) {
+    return `<div class="stats">
+    <span>${stat['stat']['name']}</span>
+    <div class="statsProgressBar" id="statsProgressBar"> 
+    <div class="progressBar" style="width:${stat['base_stat']/2.5}%;">${stat['base_stat']}</div></div>
+</div>`
+}
+
+function generateMoves(pokemon) {
+    for (let m = 0; m < pokemon['moves'].length; m++) {
+        let move = pokemon['moves'][m];
+        if (m < pokemon['moves'].length - 1) {
+            document.getElementById('detailMoves').innerHTML += createMove(move);
+        } else {
+            document.getElementById('detailMoves').innerHTML += createLastMove(move);
+        }
+    }
+}
+
+function createMove(move) {
+    return ` <span>${move['move']['name']},</span>`
+}
+
+function createLastMove(move) {
+    return ` <span>${move['move']['name']}</span>`
 }
 
 function showShiny(id) {
@@ -156,6 +225,7 @@ function addTeam(id) {
     if (team.length < 6) {
         let pokemon = loadedPokemon[id - 1];
         team.push(pokemon);
+        renderTeamAmount();
     }
     renderTeam();
 }
@@ -166,10 +236,56 @@ function renderTeam() {
     for (let i = 0; i < 6; i++) {
         let pokemon = team[i];
         if (pokemon) {
-            pokeTeam.innerHTML += `<div class="teamImg"><img class="" src="${pokemon['sprites']['other']['official-artwork']['front_default']}"></div>`
+            pokeTeam.innerHTML += `<div class="teamImg" onclick="openTeamRemove(${i})"><img class="" src="${pokemon['sprites']['other']['official-artwork']['front_default']}">
+            <div class="teamRemove" id="teamRemove${i}" onclick="removeFromTeam(${i})"><img src="./img/icons/remove_48.svg"></div></div>`
         } else {
             pokeTeam.innerHTML += `<div class="teamImg"><img class="teamId-${teamId}" src="./img/pokeball-icon.jpg"></div>`
 
         }
     }
+}
+
+function closeDetails() {
+    document.getElementById('pokeDetails').classList.remove('dOn');
+    document.getElementById(`content`).classList.remove('hidePokedex');
+}
+
+function showTeam() {
+    let pokeTeamClass = document.getElementById(`pokeTeam`).classList;
+    let pokedexClass = document.getElementById(`content`).classList;
+    if (pokeTeamClass.contains('dOn')) {
+        pokeTeamClass.remove('dOn');
+        pokedexClass.remove('hidePokedex');
+    } else {
+        pokeTeamClass.add('dOn');
+        pokedexClass.add('hidePokedex');
+    }
+}
+
+function openTeamRemove(i) {
+    let removeClass = document.getElementById(`teamRemove${i}`).classList;
+    if (removeClass.contains('dOn')) {
+        removeClass.remove('dOn');
+    } else {
+        removeClass.add('dOn');
+    }
+
+}
+
+function removeFromTeam(i) {
+    team.splice(i, 1);
+    renderTeamAmount();
+    renderTeam();
+}
+
+function renderTeamAmount() {
+    let teamAmount = team.length;
+    if (team.length == 0) {
+        document.getElementById(`teamAmount`).innerHTML = ``;
+        document.getElementById('teamAmount').classList.remove('teamAmount');
+    } else {
+        document.getElementById(`teamAmount`).innerHTML = `${teamAmount}`;
+        document.getElementById('teamAmount').classList.add('teamAmount');
+    }
+
 }
