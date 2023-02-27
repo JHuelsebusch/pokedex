@@ -101,6 +101,7 @@ async function loadNewPokemon() {
 function showDetails(id) {
     pokemon = loadedPokemon[id - 1];
     document.getElementById('content').classList.add('hidePokedex');
+    document.getElementById('pokeTeam').classList.remove('dOn');
     showDetailCard(pokemon)
     generateDetaisType(pokemon);
     generateAbilities(pokemon);
@@ -259,6 +260,7 @@ function showTeam() {
     } else {
         pokeTeamClass.add('dOn');
         pokedexClass.add('hidePokedex');
+        document.getElementById('pokeDetails').classList.remove('dOn');
     }
 }
 
@@ -266,13 +268,25 @@ function openTeamRemove(i) {
     let removeClass = document.getElementById(`teamRemove${i}`).classList;
     if (removeClass.contains('dOn')) {
         removeClass.remove('dOn');
+        pokeId = team[i]['id'];
+        showDetails(pokeId);
     } else {
         removeClass.add('dOn');
-    }
 
+    }
+}
+
+function resetTeamRemove() {
+    for (i = 0; i < team.length; i++) {
+        let removeClass = document.getElementById(`teamRemove${i}`).classList;
+        if (removeClass.contains('dOn')) {
+            removeClass.remove('dOn');
+        }
+    }
 }
 
 function removeFromTeam(i) {
+    resetTeamRemove();
     team.splice(i, 1);
     renderTeamAmount();
     renderTeam();
@@ -288,4 +302,18 @@ function renderTeamAmount() {
         document.getElementById('teamAmount').classList.add('teamAmount');
     }
 
+}
+
+function searchPokemon() {
+    let search = document.getElementById('search').value;
+    search = search.toLowerCase();
+    let content = document.getElementById('content');
+    content.innerHTML = ``;
+    for (let s = 0; s < loadedPokemon.length; s++) {
+        pokemon = loadedPokemon[s];
+        if (pokemon['name'].includes(search)) {
+            showPokemon(pokemon);
+        }
+
+    }
 }

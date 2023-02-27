@@ -110,6 +110,7 @@ nav div {
 }
 
 .teamAmount {
+    display: none;
     position: absolute;
     width: 20px;
     height: 20px;
@@ -136,6 +137,9 @@ input {
 @media(max-width:810px) {
     nav div {
         width: unset;
+    }
+    .teamAmount {
+        display: flex;
     }
 }
 
@@ -316,11 +320,11 @@ input {
         display: none;
         position: absolute;
         top: 70px;
-        width: 90%;
+        width: 95%;
         z-index: 2;
     }
     .content {
-        width: 90%;
+        width: 95%;
         max-width: unset;
         /* padding: unset;
         margin: unset; */
@@ -499,7 +503,7 @@ input {
     align-items: center;
     gap: 5px;
     color: var(--first-textcolor);
-    cursor: pointer;
+    cursor: url('./img/pokeballcursor.png') 30 30, pointer;
 }
 
 .detailAct:hover {
@@ -638,11 +642,11 @@ input {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-
-/* .teamRemove img {
-    height: 30px;
-
-} */
+@media(max-width:810px) {
+    .teamImg {
+        height: 30%;
+    }
+}
 
 
 /* Types */
