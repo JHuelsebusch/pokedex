@@ -326,8 +326,7 @@ input {
     .content {
         width: 95%;
         max-width: unset;
-        /* padding: unset;
-        margin: unset; */
+        z-index: 1;
     }
 }
 
@@ -904,6 +903,7 @@ footer {
     bottom: 0;
     right: 0;
     padding: 0px 10px;
+    z-index: 0;
 }
 
 footer a {
