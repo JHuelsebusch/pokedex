@@ -817,6 +817,7 @@ input {
     text-align: center;
     gap: 60px;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+    z-index: 10;
 }
 
 @media(max-width:400px) {
