@@ -897,3 +897,22 @@ input {
         transform: translate(30px);
     }
 }
+
+footer {
+    color: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0px 10px;
+}
+
+footer a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+@media(max-width:810px) {
+    footer {
+        font-size: 0.8em;
+    }
+}
