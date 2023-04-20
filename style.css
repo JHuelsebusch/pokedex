@@ -942,3 +942,9 @@ footer a {
     color: white;
     text-decoration: none;
 }
+
+@media(max-width:810px) {
+    .impressum {
+        padding: unset;
+    }
+}
