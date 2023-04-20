@@ -917,3 +917,28 @@ footer a {
         font-size: 0.8em;
     }
 }
+
+.bgImpressum {
+    background-image: url('./img/pokeball.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 70px 10px;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: scroll;
+}
+
+.impressum {
+    padding: 0px 100px;
+    color: white;
+    height: 100vh;
+}
+
+.impressum a {
+    color: white;
+    text-decoration: none;
+}
