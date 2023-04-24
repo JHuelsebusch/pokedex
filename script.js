@@ -1,7 +1,7 @@
 let loadedPokemon = [];
 let teamId; //Team Valor, Mystic or Instinct
-let startId = 1;
-let endId = 20;
+let startId;
+let endId;
 let team = [];
 
 function init() {
@@ -32,7 +32,7 @@ function showPokedex() {
     document.getElementById('startScreen').classList.add('hide');
     document.getElementById('pokedex').classList.remove('hide');
     startId = 1;
-    endId = 20;
+    endId = 50;
     loadPokemon();
     renderTeam();
 }
@@ -55,7 +55,6 @@ function showPokemon(pokemon) {
     let imgUrl = pokemon['sprites']['other']['official-artwork']['front_default'];
     let firstType = pokemon['types'][0]['type']['name'];
     document.getElementById('content').innerHTML += generatePokeCard(id, name, imgUrl, firstType);
-    console.log(name, id);
 
     let types = pokemon['types'];
     for (let t = 0; t < types.length; t++) {
